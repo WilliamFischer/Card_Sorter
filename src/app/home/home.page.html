@@ -1,20 +1,109 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div>
+  <div
+    class="results"
+    *ngIf="isConnected && !failedConnection && series && fabCard.name"
+  >
+    <ul>
+      <li>
+        <h1 *ngIf="fabCard.name">{{fabCard.name}}
+          <label *ngIf="!fabCard.isFirstEdition">Unlimited </label>
+          <label *ngIf="fabCard.isFirstEdition">1st Edition </label>
+          <label *ngIf="fabCard.isFoil">Foil </label>
+          <label *ngIf="!fabCard.isFoil">(Non-Foil) </label></h1>
+      </li>
+      <li *ngIf="fabCard.marketPrice">
+        <b>Market Price: </b>
+        ${{fabCard.marketPrice}}
+      </li>
+      <br />
+      <img *ngIf="fabCard.image" [src]="fabCard.image" />
+      <br />
+      <br />
+      <li *ngIf="fabCard.subTypeName">
+        <b>Price Title: </b>{{fabCard.subTypeName}}
+      </li>
+      <br />
+      <li *ngIf="fabCard.marketPrice">
+        <b>Price Source: </b>
+        TCGPlayer.com
+      </li>
+      <br />
+      <li *ngIf="fabCard.midPrice">
+        <b>Price Details: </b> <br />
+        <label
+          >Low: ${{fabCard.lowPrice}} &bull; Medium: ${{fabCard.midPrice}}
+          &bull; High: ${{fabCard.highPrice}}</label
+        >
+      </li>
+      <br />
+      <li><b>SERIES ID: </b>{{series}}</li>
+      <br />
+      <li *ngIf="fabCard.identifier">
+        <b>FULL IDER: </b>{{fabCard.identifier}}
+      </li>
+      <br />
+      <li *ngIf="fabCard.rarity"><b>Rarity: </b>{{fabCard.rarity}}</li>
+      <br />
+      <li *ngIf="fabCard.text"><b>Text: </b>{{fabCard.text}}</li>
+      <br />
+      <li *ngIf="fabCard.identifier">
+        <b>is Banned: </b><label *ngIf="!fabCard.banned">NOT BANNED</label
+        ><label *ngIf="fabCard.banned">BANNED</label>
+      </li>
+      <br /><br />
+    </ul>
   </div>
-</ion-content>
+
+  <div class="wrapper">
+    <h1 *ngIf="!isConnected && !failedConnection">
+      Looking for Card Logger...
+    </h1>
+
+    <div *ngIf="isConnected && !failedConnection">
+      <h1 *ngIf="!processingPhoto">Connected to logger 😎😎</h1>
+
+      <h1 *ngIf="processingPhoto">Generating Vision Results...</h1>
+      <h1 *ngIf="!processingPhoto">
+        <label id="nonFoilLabel">Non-foil Mode </label>
+        <label style="display: none" id="foilLabel">Foil Mode</label> &bull;
+        <label id="unlimitedLabel">Unlimited Mode</label>
+        <label style="display: none" id="firstEditionLabel"
+          >1st Edition Mode</label
+        >
+      </h1>
+
+      <button class="centerBtn" *ngIf="!processingPhoto" (click)="takePicture()">
+        Log FAB Card
+      </button>
+      <button class="centerBtn" *ngIf="!processingPhoto" (click)="tryName()">
+        Try Card Name (non-fab)
+      </button>
+
+
+
+      <!-- <button (click)="takePicture()">Take Picture</button> -->
+    </div>
+
+    <div *ngIf="failedConnection && !isConnected">
+      <h1>Couldnt Find Card Logger :(</h1>
+      <button class="centerBtn" (click)="connectBT()">Try Again</button>
+    </div>
+  </div>
+
+  <div>
+    <ion-icon
+      name="flashlight-outline"
+      class="flashLight"
+      *ngIf="!flashMode"
+      (click)="toggleFlashOn()"
+    ></ion-icon>
+    <ion-icon
+      name="flashlight"
+      class="flashLight"
+      *ngIf="flashMode"
+      (click)="toggleFlashOff()"
+    ></ion-icon>
+  </div>
+
+  <img class="backDrop" *ngIf="displayPhoto" [src]="displayPhoto" />
+</div>

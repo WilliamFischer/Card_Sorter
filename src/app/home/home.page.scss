@@ -1,27 +1,104 @@
-#container {
-  text-align: center;
+*{
+  font-family:monospace;
+}
 
-  position: absolute;
+.centerBtn{
+  margin-left: auto;
+  margin-right: auto;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+button{
+  padding: 10px;
+  background: black;
+  color: #e8e8e8;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+  margin-top: -10px;
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: 4px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+h1{
+  display: block;
+  font-size: 14px;
+  padding-bottom: 20px;
+  white-space: nowrap;
+  width: 100%;
+}
 
-  color: #8c8c8c;
+.flashLight{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10%;
+  display: block;
+  font-size: 32px;
+  color: black;
+  text-shadow: 1px 1px #fff;
+  z-index: 10;
+}
 
+.results{
+  text-align: center;
+  height: fit-content;
+  background: #d4d4d4b0;
+  border-bottom: 1px solid black;
+  height: 40vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 10vh;
+}
+
+.wrapper{
+  text-align: center;
+  height: fit-content;
+  z-index: 10;
+  background: #d4d4d4b0;
+  padding: 20px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+}
+
+.backDrop{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+ul{
+  color: #424242;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 
-#container a {
-  text-decoration: none;
+.centered{
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }

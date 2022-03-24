@@ -1,7 +1,10 @@
 {
   "name": "sorter6900",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {
+      "enabled": false
+    }
   },
   "type": "angular"
 }
